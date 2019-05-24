@@ -1,6 +1,6 @@
 # xLib `v0.1`
 
-This is a library that I made for all my plugins, it will make your live a lot easier when writing Spigot plugins.
+This is a library that I made for all my plugins, it will make your life a lot easier when writing Spigot plugins.
 
 ## Features
 
@@ -31,3 +31,4 @@ This is a library that I made for all my plugins, it will make your live a lot e
 - Add unit-tests
 - Add input methods
 - Expand userinterfaces
+- Add wiki
