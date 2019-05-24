@@ -1,1 +1,25 @@
-xLib
+# xLib `v1.0`
+
+This is a libary that I made for all my plugins, it will make your live a lot easier when writing Spigot plugins.
+
+## Features
+
+- Create commands on runtime.
+- Store data easy.
+- Use config files easy.
+- Easy UserInterfaces.
+
+## How to Use
+
+1. Clone this repository
+2. Run the command `mvn clean install`
+3. Add this dependency to your pom:
+
+```XML
+<dependency>
+    <groupId>io.github.GeertBraakman</groupId>
+    <artifactId>xLib</artifactId>
+    <version>${version}</version>
+    <scope>compile</scope>
+</dependency>
+```
