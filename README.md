@@ -23,3 +23,11 @@ This is a library that I made for all my plugins, it will make your live a lot e
     <scope>compile</scope>
 </dependency>
 ```
+
+## Todo
+
+- Add JavaDoc
+- Add database Sources
+- Add unit-tests
+- Add input methods
+- Expand userinterfaces
