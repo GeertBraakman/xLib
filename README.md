@@ -23,6 +23,22 @@ This is a library that I made for all my plugins, it will make your life a lot e
     <scope>compile</scope>
 </dependency>
 ```
+4. Add this build configuration to your pom:
+```XML
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
 
 ## Todo
 
