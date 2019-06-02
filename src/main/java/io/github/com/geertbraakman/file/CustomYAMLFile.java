@@ -1,4 +1,4 @@
-package io.gtihub.GeertBraakman.file;
+package io.github.com.geertbraakman.file;
 
 
 import org.bukkit.configuration.file.FileConfiguration;

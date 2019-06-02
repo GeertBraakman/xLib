@@ -1,4 +1,4 @@
-package io.gtihub.GeertBraakman.command;
+package io.github.com.geertbraakman.command;
 
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.Plugin;

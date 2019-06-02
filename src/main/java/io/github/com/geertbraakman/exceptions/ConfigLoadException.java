@@ -1,4 +1,4 @@
-package io.github.geertbraakman.exceptions;
+package io.github.com.geertbraakman.exceptions;
 
 public class ConfigLoadException extends Exception {
 

@@ -1,4 +1,4 @@
-package io.github.geertbraakman.api.command;
+package io.github.com.geertbraakman.api.command;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.*;

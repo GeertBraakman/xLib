@@ -1,6 +1,6 @@
-package io.github.geertbraakman.api.storage;
+package io.github.com.geertbraakman.api.storage;
 
-import io.github.geertbraakman.Handler;
+import io.github.com.geertbraakman.Handler;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
