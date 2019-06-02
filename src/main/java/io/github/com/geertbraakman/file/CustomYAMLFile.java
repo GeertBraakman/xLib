@@ -62,7 +62,7 @@ public abstract class CustomYAMLFile {
     }
 
     /**
-     * Set the filename of this Config
+     * Set the filename of this APIConfig
      *
      * @param name - the name of the file
      */

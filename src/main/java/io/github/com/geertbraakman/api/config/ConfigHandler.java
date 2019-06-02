@@ -23,17 +23,17 @@ public class ConfigHandler extends Handler {
         return instance;
     }
 
-    private List<Config> configList;
+    private List<APIConfig> APIConfigList;
 
     private ConfigHandler(Plugin plugin) {
         super(plugin);
-        configList = new ArrayList<>();
+        APIConfigList = new ArrayList<>();
     }
 
     @Override
     public boolean reload() {
-        for(Config config: configList){
-            if(!config.reload()){
+        for(APIConfig APIConfig : APIConfigList){
+            if(!APIConfig.reload()){
                 return false;
             }
         }
@@ -65,9 +65,9 @@ public class ConfigHandler extends Handler {
         return config;
     }
 
-    public void registerConfig(Config config) {
-        if(!configList.contains(config)){
-            configList.add(config);
+    public void registerConfig(APIConfig APIConfig) {
+        if(!APIConfigList.contains(APIConfig)){
+            APIConfigList.add(APIConfig);
         }
     }
 

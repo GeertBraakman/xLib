@@ -9,7 +9,7 @@ import org.bukkit.plugin.Plugin;
  *
  * The file has to be in the plugin, otherwise it will not work.
  */
-public abstract class Config {
+public abstract class APIConfig {
 
   private String fileName;
   private FileConfiguration fileConfiguration;
@@ -20,7 +20,7 @@ public abstract class Config {
      * @param plugin The plugin you want to create this fileConfiguration with.
      * @param name - The name of the file, it will automatically put .yml behind it when you forget.
      */
-  public Config(Plugin plugin, String name) {
+  public APIConfig(Plugin plugin, String name) {
     this.fileName = ConfigHandler.addFileExtension(name);
     handler = ConfigHandler.getInstance(plugin);
     reload();
