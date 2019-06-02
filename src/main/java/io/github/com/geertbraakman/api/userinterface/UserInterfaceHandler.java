@@ -43,7 +43,7 @@ public class UserInterfaceHandler extends Handler implements Listener
     Inventory inventory = event.getClickedInventory();
     UserInterface userInterface = getUI(inventory);
     if (userInterface != null) {
-      userInterface.onClick(event);
+      userInterface.click(event);
     }
   }
   

@@ -44,10 +44,14 @@ public abstract class UserInterface
   public Inventory getInventory() {
     return inventory;
   }
-  
+
+  void click(InventoryClickEvent event) {
+    onClick(event);
+  }
+
   public abstract void onClick(InventoryClickEvent inventoryClickEvent);
 
-  public void close(InventoryCloseEvent inventoryCloseEvent){
+  void close(InventoryCloseEvent inventoryCloseEvent){
     HumanEntity entity = inventoryCloseEvent.getPlayer();
     if(entity instanceof Player){
       Player player = (Player) entity;
