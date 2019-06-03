@@ -9,7 +9,7 @@ import org.bukkit.plugin.Plugin;
  *
  * The file has to be in the plugin, otherwise it will not work.
  */
-public abstract class APIConfig {
+public class APIConfig {
 
   private String fileName;
   private FileConfiguration fileConfiguration;

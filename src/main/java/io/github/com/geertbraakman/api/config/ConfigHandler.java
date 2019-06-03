@@ -50,9 +50,10 @@ public class ConfigHandler extends Handler {
     YamlConfiguration loadConfig(String fileName) throws ConfigLoadException {
         File file = new File(getPlugin().getDataFolder(), fileName);
         if (!file.exists()) {
-            if (!file.getParentFile().mkdirs()){
-                throw new ConfigLoadException(fileName, "Could not create the file");
-            }
+//            if (!file.getParentFile().mkdirs()){
+//                throw new ConfigLoadException(fileName, "Could not create the file");
+//            }
+            file.getParentFile().mkdirs();
             getPlugin().saveResource(fileName, false);
         }
 
