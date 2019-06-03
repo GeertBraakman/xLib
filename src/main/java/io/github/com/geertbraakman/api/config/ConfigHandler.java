@@ -1,7 +1,7 @@
-package io.github.geertbraakman.api.config;
+package io.github.com.geertbraakman.api.config;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.exceptions.ConfigLoadException;
+import io.github.com.geertbraakman.Handler;
+import io.github.com.geertbraakman.exceptions.ConfigLoadException;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -23,17 +23,17 @@ public class ConfigHandler extends Handler {
         return instance;
     }
 
-    private List<Config> configList;
+    private List<APIConfig> APIConfigList;
 
     private ConfigHandler(Plugin plugin) {
         super(plugin);
-        configList = new ArrayList<>();
+        APIConfigList = new ArrayList<>();
     }
 
     @Override
     public boolean reload() {
-        for(Config config: configList){
-            if(!config.reload()){
+        for(APIConfig APIConfig : APIConfigList){
+            if(!APIConfig.reload()){
                 return false;
             }
         }
@@ -50,9 +50,10 @@ public class ConfigHandler extends Handler {
     YamlConfiguration loadConfig(String fileName) throws ConfigLoadException {
         File file = new File(getPlugin().getDataFolder(), fileName);
         if (!file.exists()) {
-            if (!file.getParentFile().mkdirs()){
-                throw new ConfigLoadException(fileName, "Could not create the file");
-            }
+//            if (!file.getParentFile().mkdirs()){
+//                throw new ConfigLoadException(fileName, "Could not create the file");
+//            }
+            file.getParentFile().mkdirs();
             getPlugin().saveResource(fileName, false);
         }
 
@@ -65,9 +66,9 @@ public class ConfigHandler extends Handler {
         return config;
     }
 
-    public void registerConfig(Config config) {
-        if(!configList.contains(config)){
-            configList.add(config);
+    public void registerConfig(APIConfig APIConfig) {
+        if(!APIConfigList.contains(APIConfig)){
+            APIConfigList.add(APIConfig);
         }
     }
 

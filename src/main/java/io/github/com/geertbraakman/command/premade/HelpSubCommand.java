@@ -1,6 +1,6 @@
-package io.gtihub.GeertBraakman.command.premade;
+package io.github.com.geertbraakman.command.premade;
 
-import io.gtihub.GeertBraakman.command.APICommand;
+import io.github.com.geertbraakman.command.APICommand;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;

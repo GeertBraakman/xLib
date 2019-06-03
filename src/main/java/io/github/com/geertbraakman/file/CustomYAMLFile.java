@@ -1,4 +1,4 @@
-package io.gtihub.GeertBraakman.file;
+package io.github.com.geertbraakman.file;
 
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -62,7 +62,7 @@ public abstract class CustomYAMLFile {
     }
 
     /**
-     * Set the filename of this Config
+     * Set the filename of this APIConfig
      *
      * @param name - the name of the file
      */

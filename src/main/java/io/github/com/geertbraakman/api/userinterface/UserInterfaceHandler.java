@@ -1,6 +1,6 @@
-package io.github.geertbraakman.api.userinterface;
+package io.github.com.geertbraakman.api.userinterface;
 
-import io.github.geertbraakman.Handler;
+import io.github.com.geertbraakman.Handler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -43,7 +43,7 @@ public class UserInterfaceHandler extends Handler implements Listener
     Inventory inventory = event.getClickedInventory();
     UserInterface userInterface = getUI(inventory);
     if (userInterface != null) {
-      userInterface.onClick(event);
+      userInterface.click(event);
     }
   }
   

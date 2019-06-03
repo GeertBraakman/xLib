@@ -1,4 +1,4 @@
-package io.github.geertbraakman.api.command;
+package io.github.com.geertbraakman.api.command;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.*;
@@ -199,7 +199,7 @@ public abstract class APICommand extends Command {
      * @param args the array you want to modify
      * @return the array without the first argument.
      */
-    private String[] removeFirstArgument(String[] args) {
+    public String[] removeFirstArgument(String[] args) {
         String[] strings = new String[args.length - 1];
         System.arraycopy(args, 1, strings, 0, args.length - 1);
         return strings;

@@ -1,4 +1,4 @@
-package io.github.geertbraakman;
+package io.github.com.geertbraakman;
 
 public enum PropertyKey {
 
