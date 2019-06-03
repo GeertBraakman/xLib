@@ -1,4 +1,4 @@
-# xLib `v0.1`
+# xLib `v0.2`
 
 This is a library that I made for all my plugins, it will make your life a lot easier when writing Spigot plugins.
 
