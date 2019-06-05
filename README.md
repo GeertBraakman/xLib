@@ -17,7 +17,7 @@ This is a library that I made for all my plugins, it will make your life a lot e
 
 ```XML
 <dependency>
-    <groupId>iio.github.com.geertbraakman</groupId>
+    <groupId>io.github.com.geertbraakman</groupId>
     <artifactId>xLib</artifactId>
     <version>${version}</version>
     <scope>compile</scope>
