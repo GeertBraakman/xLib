@@ -45,4 +45,5 @@ public class CommandHandler extends Handler {
         return simpleCommandMap.register(plugin.getName(), command);
     }
 
+
 }
