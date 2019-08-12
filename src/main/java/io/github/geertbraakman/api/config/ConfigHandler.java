@@ -1,7 +1,7 @@
-package io.github.com.geertbraakman.api.config;
+package io.github.geertbraakman.api.config;
 
-import io.github.com.geertbraakman.Handler;
-import io.github.com.geertbraakman.exceptions.ConfigLoadException;
+import io.github.geertbraakman.Handler;
+import io.github.geertbraakman.exceptions.ConfigLoadException;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;

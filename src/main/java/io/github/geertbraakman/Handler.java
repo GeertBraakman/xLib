@@ -1,4 +1,4 @@
-package io.github.com.geertbraakman;
+package io.github.geertbraakman;
 
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;

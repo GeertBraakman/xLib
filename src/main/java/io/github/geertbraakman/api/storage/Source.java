@@ -1,4 +1,4 @@
-package io.github.com.geertbraakman.api.storage;
+package io.github.geertbraakman.api.storage;
 
 public interface Source {
 

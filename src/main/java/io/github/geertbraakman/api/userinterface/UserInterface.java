@@ -1,4 +1,4 @@
-package io.github.com.geertbraakman.api.userinterface;
+package io.github.geertbraakman.api.userinterface;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

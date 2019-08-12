@@ -1,7 +1,7 @@
-package io.github.com.geertbraakman.api.storage.sources;
+package io.github.geertbraakman.api.storage.sources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.com.geertbraakman.api.storage.Source;
+import io.github.geertbraakman.api.storage.Source;
 
 public abstract class JsonSource implements Source {
 
