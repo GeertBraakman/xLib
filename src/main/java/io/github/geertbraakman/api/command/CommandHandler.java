@@ -1,7 +1,7 @@
 package io.github.geertbraakman.api.command;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.PropertyHandler;
+import io.github.com.geertbraakman.Handler;
+import io.github.com.geertbraakman.PropertyHandler;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;

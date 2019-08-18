@@ -1,7 +1,7 @@
 package io.github.geertbraakman.api.config;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.exceptions.ConfigLoadException;
+import io.github.com.geertbraakman.Handler;
+import io.github.com.geertbraakman.exceptions.ConfigLoadException;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -13,13 +13,24 @@ import java.util.List;
 
 public class ConfigHandler extends Handler {
 
-    private static ConfigHandler instance;
     private static final String EXTENSION = ".yml";
 
-    public static ConfigHandler getInstance(Plugin plugin) {
-        if(instance == null){
-            instance = new ConfigHandler(plugin);
+    private static List<ConfigHandler> instances;
+
+    public static ConfigHandler getInstance(Plugin plugin)
+    {
+        if (instances == null) {
+            instances = new ArrayList<>();
         }
+
+        for(ConfigHandler instance: instances){
+            if(instance.getPlugin().equals(plugin)){
+                return  instance;
+            }
+        }
+
+        ConfigHandler instance = new ConfigHandler(plugin);
+        instances.add(instance);
         return instance;
     }
 

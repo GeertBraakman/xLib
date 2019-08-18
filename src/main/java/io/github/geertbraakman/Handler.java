@@ -1,5 +1,7 @@
 package io.github.geertbraakman;
 
+import io.github.com.geertbraakman.api.reloading.IReloadable;
+import io.github.com.geertbraakman.api.reloading.Reloader;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
@@ -8,7 +10,7 @@ import java.util.logging.Logger;
 /**
  * A generalization class for all the handlers in this plugin.
  */
-public abstract class Handler implements Listener {
+public abstract class Handler implements Listener, IReloadable {
 
     private Plugin plugin;
     private Logger logger;
@@ -20,6 +22,9 @@ public abstract class Handler implements Listener {
         this.plugin = plugin;
         logger = plugin.getLogger();
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        if (!(this instanceof Reloader)) {
+            Reloader.getInstance(plugin).registerReloadable(this);
+        }
     }
 
     /**

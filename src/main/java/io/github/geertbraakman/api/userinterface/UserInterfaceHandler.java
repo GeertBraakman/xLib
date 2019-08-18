@@ -1,6 +1,6 @@
 package io.github.geertbraakman.api.userinterface;
 
-import io.github.geertbraakman.Handler;
+import io.github.com.geertbraakman.Handler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,16 +14,26 @@ import java.util.List;
 
 public class UserInterfaceHandler extends Handler implements Listener
 {
-  private static UserInterfaceHandler instance;
-  private List<UserInterface> userInterfaces;
+  private static List<UserInterfaceHandler> instances;
 
   public static UserInterfaceHandler getInstance(Plugin plugin)
   {
-    if (instance == null) {
-      instance = new UserInterfaceHandler(plugin);
+    if (instances == null) {
+      instances = new ArrayList<>();
     }
+
+    for(UserInterfaceHandler instance: instances){
+      if(instance.getPlugin().equals(plugin)){
+        return  instance;
+      }
+    }
+
+    UserInterfaceHandler instance = new UserInterfaceHandler(plugin);
+    instances.add(instance);
     return instance;
   }
+
+  private List<UserInterface> userInterfaces;
 
   private UserInterfaceHandler(Plugin plugin)
   {

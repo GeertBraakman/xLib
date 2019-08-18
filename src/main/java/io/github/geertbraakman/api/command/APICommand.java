@@ -110,7 +110,8 @@ public abstract class APICommand extends Command {
     public abstract boolean onCommand(CommandSender sender, Command command, String alias, String[] args);
 
     private boolean isSubCommand(String[] args) {
-        if (args.length == 0) {
+
+        if (args.length < 1) {
             return false;
         }
 
@@ -121,6 +122,7 @@ public abstract class APICommand extends Command {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -154,7 +156,7 @@ public abstract class APICommand extends Command {
      * @return if it's an alias.
      */
     private boolean containsLabel(String label) {
-        return (getName().equalsIgnoreCase(label) || getAliases().contains(label.toLowerCase()));
+        return (getName().equalsIgnoreCase(label) || getAliases().contains(label.toLowerCase()) || getLabel().equalsIgnoreCase(label));
     }
 
     /**

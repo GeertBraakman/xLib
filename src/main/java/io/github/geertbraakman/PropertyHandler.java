@@ -62,6 +62,10 @@ public class PropertyHandler extends Handler {
     }
 
     public boolean subCommandCheck() {
+       String value =  getValue(PropertyKey.SUB_COMMAND_CHECK);
+       if(value == null){
+           return true; // This is the default!
+       }
        return Boolean.parseBoolean(getValue(PropertyKey.SUB_COMMAND_CHECK));
     }
 
