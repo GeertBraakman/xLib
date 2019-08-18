@@ -1,8 +1,8 @@
 package io.github.geertbraakman.api.reloading;
 
-import io.github.com.geertbraakman.Handler;
-import io.github.com.geertbraakman.api.config.ConfigHandler;
-import io.github.com.geertbraakman.api.storage.StorageHandler;
+import io.github.geertbraakman.Handler;
+import io.github.geertbraakman.api.config.ConfigHandler;
+import io.github.geertbraakman.api.storage.StorageHandler;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;

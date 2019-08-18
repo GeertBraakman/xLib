@@ -1,6 +1,6 @@
 package io.github.geertbraakman.api.config;
 
-import io.github.com.geertbraakman.exceptions.ConfigLoadException;
+import io.github.geertbraakman.exceptions.ConfigLoadException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 

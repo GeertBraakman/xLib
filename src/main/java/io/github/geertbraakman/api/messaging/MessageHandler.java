@@ -1,9 +1,8 @@
 package io.github.geertbraakman.api.messaging;
 
-import io.github.com.geertbraakman.Handler;
-import io.github.com.geertbraakman.api.config.APIConfig;
-import io.github.com.geertbraakman.api.config.ConfigHandler;
-import io.github.com.geertbraakman.api.reloading.Reloader;
+import io.github.geertbraakman.Handler;
+import io.github.geertbraakman.api.config.APIConfig;
+import io.github.geertbraakman.api.config.ConfigHandler;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;

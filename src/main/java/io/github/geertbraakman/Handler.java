@@ -1,7 +1,7 @@
 package io.github.geertbraakman;
 
-import io.github.com.geertbraakman.api.reloading.IReloadable;
-import io.github.com.geertbraakman.api.reloading.Reloader;
+import io.github.geertbraakman.api.reloading.IReloadable;
+import io.github.geertbraakman.api.reloading.Reloader;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 

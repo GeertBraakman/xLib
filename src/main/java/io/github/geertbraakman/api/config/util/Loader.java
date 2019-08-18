@@ -1,6 +1,6 @@
 package io.github.geertbraakman.api.config.util;
 
-import io.github.com.geertbraakman.api.command.APICommand;
+import io.github.geertbraakman.api.command.APICommand;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
