@@ -65,6 +65,7 @@ public abstract class UserInterface
   public void openFor(Player player) {
     if(onOpening(player)){
       playerList.add(player);
+      player.openInventory(inventory);
     }
   }
 
@@ -76,5 +77,9 @@ public abstract class UserInterface
 
   public List<Player> getPlayerList(){
     return playerList;
+  }
+
+  public HashMap<Integer, ItemStack> getStaticItems(){
+    return staticItems;
   }
 }

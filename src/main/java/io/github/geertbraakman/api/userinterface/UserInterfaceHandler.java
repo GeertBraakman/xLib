@@ -39,7 +39,6 @@ public class UserInterfaceHandler extends Handler implements Listener
   {
     super(plugin);
     userInterfaces = new ArrayList<>();
-    plugin.getServer().getPluginManager().registerEvents(this, plugin);
   }
   
   public void registerUI(UserInterface userInterface) {

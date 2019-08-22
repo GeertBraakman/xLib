@@ -58,20 +58,28 @@ public class MessageHandler extends Handler {
     }
 
     public String getMessage(String key, Player player, String defaultMessage){
-        String message = defaultMessage;
+        String message = "default";
 
         if(key != null){
-            message = messages.get(key);
             if(messages.containsKey(key)){
-                message = messages.get(key);
+                message = "" + messages.get(key);
             }
         }
+
+
+        switch (message){
+            case "none":
+                message = "";
+            case "default":
+                message = defaultMessage;
+        }
+
         return formatMessage(message, player);
     }
 
     public String formatMessage(String message, Player player){
-        String prefix = messages.get("prefix");
-        if(prefix == null) {
+        String prefix = messages.get("prefix") + " ";
+        if(prefix.equals(" ")) {
             prefix = "";
         }
 
