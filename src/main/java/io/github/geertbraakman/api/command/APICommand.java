@@ -1,5 +1,6 @@
 package io.github.geertbraakman.api.command;
 
+import io.github.geertbraakman.api.messaging.MessageHandler;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.*;
 
@@ -13,10 +14,12 @@ public abstract class APICommand extends Command {
     private ArrayList<APICommand> subCommands;
     private Plugin plugin;
     private boolean subCommandCheck = true;
+    private MessageHandler messageHandler;
 
     public APICommand(Plugin plugin, String command) {
         super(command);
         this.plugin = plugin;
+        this.messageHandler = MessageHandler.getInstance(plugin);
         subCommands = new ArrayList<>();
     }
 
@@ -234,5 +237,9 @@ public abstract class APICommand extends Command {
 
     public Plugin getPlugin(){
         return this.plugin;
+    }
+
+    public MessageHandler getMessageHandler() {
+        return messageHandler;
     }
 }

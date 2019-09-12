@@ -9,17 +9,37 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
 public class MessageHandler extends Handler {
-    
+
+    private static List<MessageHandler> instances;
+
+    public static MessageHandler getInstance(Plugin plugin) {
+        if(instances == null) {
+            instances = new ArrayList<>();
+        }
+
+       for(MessageHandler handler: instances) {
+           if(handler.getPlugin().equals(plugin)){
+               return handler;
+           }
+       }
+       MessageHandler instance = new MessageHandler(plugin);
+
+       instances.add(instance);
+       return instance;
+    }
+
     private APIConfig messageFile;
     private Map<String, String> messages;
     private boolean usePlaceholders;
 
-    public MessageHandler(Plugin plugin) {
+    private MessageHandler(Plugin plugin) {
         super(plugin);
         messageFile = new APIConfig(plugin, "messages");
         ConfigHandler.getInstance(plugin).registerConfig(messageFile);
@@ -57,7 +77,7 @@ public class MessageHandler extends Handler {
         return getMessage(key, player, "&cThe key &7" + key + "&c can't be found, contact an administrator!");
     }
 
-    public String getMessage(String key, Player player, String defaultMessage){
+    public String getMessage(String key, Player player, String defaultMessage, boolean addPrefix){
         String message = "default";
 
         if(key != null){
@@ -74,12 +94,16 @@ public class MessageHandler extends Handler {
                 message = defaultMessage;
         }
 
-        return formatMessage(message, player);
+        return formatMessage(message, player, addPrefix);
     }
 
-    public String formatMessage(String message, Player player){
+    public String getMessage(String key, Player player, String defaultMessage){
+        return getMessage(key, player, defaultMessage, true);
+    }
+
+    public String formatMessage(String message, Player player, boolean addPrefix){
         String prefix = messages.get("prefix") + " ";
-        if(prefix.equals(" ")) {
+        if(prefix.equals(" ") || !addPrefix) {
             prefix = "";
         }
 

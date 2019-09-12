@@ -109,14 +109,10 @@ public class Loader {
         if (enchantmentSection != null) {
             for (String key : enchantmentSection.getKeys(false)) {
                 Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(key.toLowerCase()));
-                System.out.println("Key: " + key);
                 if (enchantment != null) {
-                    System.out.println("Enchantment: " + enchantment.toString());
                     String levelString = enchantmentSection.getString(key);
-                    System.out.println("levelString: " + levelString);
                     if (levelString != null && Util.isInteger(levelString)) {
                         int level = Integer.parseInt(levelString);
-                        System.out.println("Level: " + level);
                         itemMeta.addEnchant(enchantment, level, true);
                     }
                 }
