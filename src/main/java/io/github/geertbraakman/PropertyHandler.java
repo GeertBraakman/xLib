@@ -1,7 +1,6 @@
 package io.github.geertbraakman;
 
 import io.github.geertbraakman.api.APIPlugin;
-import org.bukkit.plugin.Plugin;
 
 import java.io.IOException;
 import java.util.ArrayList;

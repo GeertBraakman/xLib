@@ -15,16 +15,16 @@ public class ConfigHandler extends Handler {
 
     private static final String EXTENSION = ".yml";
 
-    private List<APIConfig> APIConfigList;
+    private List<APIConfig> apiConfigList;
 
     public ConfigHandler(APIPlugin plugin) {
         super(plugin);
-        APIConfigList = new ArrayList<>();
+        apiConfigList = new ArrayList<>();
     }
 
     @Override
     public boolean reload() {
-        for(APIConfig APIConfig : APIConfigList){
+        for(APIConfig APIConfig : apiConfigList){
             if(!APIConfig.reload()){
                 return false;
             }
@@ -42,9 +42,6 @@ public class ConfigHandler extends Handler {
     YamlConfiguration loadConfig(String fileName) throws ConfigLoadException {
         File file = new File(getAPIPlugin().getDataFolder(), fileName);
         if (!file.exists()) {
-//            if (!file.getParentFile().mkdirs()){
-//                throw new ConfigLoadException(fileName, "Could not create the file");
-//            }
             file.getParentFile().mkdirs();
             getAPIPlugin().saveResource(fileName, false);
         }
@@ -58,9 +55,9 @@ public class ConfigHandler extends Handler {
         return config;
     }
 
-    public void registerConfig(APIConfig APIConfig) {
-        if(!APIConfigList.contains(APIConfig)){
-            APIConfigList.add(APIConfig);
+    public void registerConfig(APIConfig apiConfig) {
+        if(!apiConfigList.contains(apiConfig)){
+            apiConfigList.add(apiConfig);
         }
     }
 

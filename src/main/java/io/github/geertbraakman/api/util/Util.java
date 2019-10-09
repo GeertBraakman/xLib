@@ -1,6 +1,5 @@
 package io.github.geertbraakman.api.util;
 
-import io.github.geertbraakman.api.messaging.MessageHandler;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -72,8 +71,8 @@ public class Util {
     public static String updatePlaceholders(String string, Player player, Map<String, String> placeholders) {
 
         if(placeholders != null) {
-            for (String placeholder : placeholders.keySet()) {
-                string = string.replace(placeholder, placeholders.get(placeholder));
+            for (Map.Entry<String, String> entry : placeholders.entrySet()) {
+                string = string.replace(entry.getKey(), entry.getValue());
             }
         }
 

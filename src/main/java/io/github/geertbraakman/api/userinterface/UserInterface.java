@@ -79,7 +79,7 @@ public abstract class UserInterface
     return playerList;
   }
 
-  public HashMap<Integer, ItemStack> getStaticItems(){
+  public Map<Integer, ItemStack> getStaticItems(){
     return staticItems;
   }
 }

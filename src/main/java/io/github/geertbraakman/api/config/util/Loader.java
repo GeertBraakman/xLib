@@ -14,6 +14,8 @@ import java.util.List;
 
 public class Loader {
 
+    private Loader() {}
+
     public static APICommand loadCommand(APICommand command, ConfigurationSection section) {
 
 

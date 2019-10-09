@@ -3,7 +3,6 @@ package io.github.geertbraakman.api.config;
 import io.github.geertbraakman.api.APIPlugin;
 import io.github.geertbraakman.exceptions.ConfigLoadException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 
 /**
  * This Class is representing a fileConfiguration file, you throw in a filename and it will automatically load it from a yml file.

@@ -4,7 +4,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ItemLoadException extends Exception {
 
-    private ItemStack loadedItem;
+    private final transient ItemStack loadedItem;
 
     public ItemLoadException (String message, ItemStack loadedItem) {
         super(message);

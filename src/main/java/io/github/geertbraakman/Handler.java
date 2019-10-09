@@ -4,7 +4,6 @@ import io.github.geertbraakman.api.APIPlugin;
 import io.github.geertbraakman.api.reloading.IReloadable;
 import io.github.geertbraakman.api.reloading.Reloader;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 
 import java.util.logging.Logger;
 
