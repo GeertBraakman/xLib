@@ -1,5 +1,6 @@
 package io.github.geertbraakman.api.config;
 
+import io.github.geertbraakman.api.APIPlugin;
 import io.github.geertbraakman.exceptions.ConfigLoadException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -20,9 +21,9 @@ public class APIConfig {
      * @param plugin The plugin you want to create this fileConfiguration with.
      * @param name - The name of the file, it will automatically put .yml behind it when you forget.
      */
-  public APIConfig(Plugin plugin, String name) {
+  public APIConfig(APIPlugin plugin, String name) {
     this.fileName = ConfigHandler.addFileExtension(name);
-    handler = ConfigHandler.getInstance(plugin);
+    handler = plugin.getConfigHandler();
     reload();
   }
 

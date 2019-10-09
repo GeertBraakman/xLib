@@ -1,52 +1,37 @@
 package io.github.geertbraakman.api.messaging;
 
 import io.github.geertbraakman.Handler;
+import io.github.geertbraakman.api.APIPlugin;
 import io.github.geertbraakman.api.config.APIConfig;
-import io.github.geertbraakman.api.config.ConfigHandler;
-import me.clip.placeholderapi.PlaceholderAPI;
-import org.bukkit.ChatColor;
+import io.github.geertbraakman.api.util.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
 public class MessageHandler extends Handler {
 
-    private static List<MessageHandler> instances;
-
-    public static MessageHandler getInstance(Plugin plugin) {
-        if(instances == null) {
-            instances = new ArrayList<>();
-        }
-
-       for(MessageHandler handler: instances) {
-           if(handler.getPlugin().equals(plugin)){
-               return handler;
-           }
-       }
-       MessageHandler instance = new MessageHandler(plugin);
-
-       instances.add(instance);
-       return instance;
-    }
-
     private APIConfig messageFile;
     private Map<String, String> messages;
-    private boolean usePlaceholders;
+    public static boolean usePlaceholders = Bukkit.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null;
+    private boolean listContainsPrefix;
+    private String defaultMessage;
 
-    private MessageHandler(Plugin plugin) {
+    public MessageHandler(APIPlugin plugin) {
         super(plugin);
+
         messageFile = new APIConfig(plugin, "messages");
-        ConfigHandler.getInstance(plugin).registerConfig(messageFile);
-        usePlaceholders = plugin.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null;
+        getAPIPlugin().getConfigHandler().registerConfig(messageFile);
+
         if(usePlaceholders){
             getLogger().log(Level.INFO, "Hooked into PlaceholderAPI");
         }
+
+        defaultMessage = "%prefix%&cThere is no default message available for &7%key%&c!";
+
         reload();
     }
 
@@ -69,51 +54,52 @@ public class MessageHandler extends Handler {
             messages.put(key, section.getString(key));
         }
 
+        if(!messages.containsKey("prefix")){
+            messages.put("prefix", "");
+        }
+
+
         getLogger().log(Level.INFO, "Loaded " + messages.size() + " messages.");
         return true;
     }
 
-    public String getMessage(String key, Player player){
-        return getMessage(key, player, "&cThe key &7" + key + "&c can't be found, contact an administrator!");
+    public String getMessage(String key, Player player) {
+        return getMessage(key, player, null);
     }
 
-    public String getMessage(String key, Player player, String defaultMessage, boolean addPrefix){
+    public String getMessage(String key, Player player, Map<String, String> map) {
         String message = "default";
 
         if(key != null){
-            if(messages.containsKey(key)){
-                message = "" + messages.get(key);
+            if(messages.containsKey(key)) {
+                message = messages.get(key);
             }
         }
 
-
-        switch (message){
+        switch (message.toLowerCase()){
             case "none":
                 message = "";
             case "default":
                 message = defaultMessage;
         }
 
-        return formatMessage(message, player, addPrefix);
-    }
-
-    public String getMessage(String key, Player player, String defaultMessage){
-        return getMessage(key, player, defaultMessage, true);
-    }
-
-    public String formatMessage(String message, Player player, boolean addPrefix){
-        String prefix = messages.get("prefix") + " ";
-        if(prefix.equals(" ") || !addPrefix) {
-            prefix = "";
+        if(map == null) {
+            map = new HashMap<>();
         }
 
-        message = prefix + message;
 
-        if(usePlaceholders) {
-            message = PlaceholderAPI.setPlaceholders(player, message);
+        map.put("%prefix%", messages.get("prefix"));
+        map.put("%key%", key);
+
+
+        return Util.updatePlaceholders(message, player, map);
+    }
+    public void setDefaultMessage (String key, String message) {
+        if (!messages.containsKey(key)){
+            messages.put(key, message);
+        } else if (messages.get(key).equals("default")) {
+            messages.put(key, message);
         }
-
-        return ChatColor.translateAlternateColorCodes('&', message);
     }
 
 }

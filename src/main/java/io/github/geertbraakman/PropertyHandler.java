@@ -1,5 +1,6 @@
 package io.github.geertbraakman;
 
+import io.github.geertbraakman.api.APIPlugin;
 import org.bukkit.plugin.Plugin;
 
 import java.io.IOException;
@@ -11,13 +12,13 @@ public class PropertyHandler extends Handler {
 
     private static List<PropertyHandler> instances;
 
-    public static PropertyHandler getInstance(Plugin plugin) {
+    public static PropertyHandler getInstance(APIPlugin plugin) {
         if(instances == null) {
             instances = new ArrayList<>();
         }
 
         for (PropertyHandler handler: instances){
-            if(handler.getPlugin().equals(plugin)){
+            if(handler.getAPIPlugin().equals(plugin)){
                 return handler;
             }
         }
@@ -30,7 +31,7 @@ public class PropertyHandler extends Handler {
     private Properties properties;
     private final String filename;
 
-    PropertyHandler(Plugin plugin){
+    PropertyHandler(APIPlugin plugin){
         super(plugin);
         filename = "api.properties";
         try {

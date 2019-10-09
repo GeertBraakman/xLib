@@ -1,39 +1,18 @@
 package io.github.geertbraakman.api.reloading;
 
 import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.api.config.ConfigHandler;
-import io.github.geertbraakman.api.storage.StorageHandler;
-import org.bukkit.plugin.Plugin;
-
-import java.util.ArrayList;
+import io.github.geertbraakman.api.APIPlugin;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 
 public class Reloader extends Handler {
 
-    private static List<Reloader> instances;
-
-    public static Reloader getInstance(Plugin plugin) {
-        if(instances == null){
-            instances = new ArrayList<>();
-        }
-
-        for(Reloader reloader: instances){
-            if(reloader.getPlugin().equals(plugin)){
-                return reloader;
-            }
-        }
-
-        Reloader instance = new Reloader(plugin);
-        instances.add(instance);
-        return instance;
-    }
-
     private List<IReloadable> reloadableList;
 
-    private Reloader(Plugin plugin){
+    public Reloader(APIPlugin plugin){
         super(plugin);
-        reloadableList = new ArrayList<>();
+        reloadableList = new LinkedList<>();
     }
 
     public void registerReloadable(IReloadable reloadable){
@@ -45,7 +24,7 @@ public class Reloader extends Handler {
     public boolean reloadPlugin() {
         boolean success = true;
 
-        success = ConfigHandler.getInstance(getPlugin()).reload() && StorageHandler.getInstance(getPlugin()).reload();
+        success = getAPIPlugin().getConfigHandler().reload() && getAPIPlugin().getStorageHandler().reload();
 
         for(IReloadable reloadable: reloadableList){
             if(!reloadable.reload()){

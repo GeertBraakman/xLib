@@ -2,7 +2,6 @@ package io.github.geertbraakman.api.config.util;
 
 import io.github.geertbraakman.api.command.APICommand;
 import io.github.geertbraakman.api.util.Util;
-import io.github.geertbraakman.exceptions.ItemLoadException;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -11,7 +10,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Loader {

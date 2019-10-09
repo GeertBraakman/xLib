@@ -1,5 +1,6 @@
 package io.github.geertbraakman.api.util;
 
+import io.github.geertbraakman.api.messaging.MessageHandler;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,8 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
 
 public class Util {
 
@@ -25,8 +27,7 @@ public class Util {
         return updatePlaceholders(itemStack, player, null);
     }
 
-    public static ItemStack updatePlaceholders(ItemStack itemStack, Player player, HashMap<String, String> placeholders) {
-        boolean usePlaceholdersAPI = (Bukkit.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null);
+    public static ItemStack updatePlaceholders(ItemStack itemStack, Player player, Map<String, String> placeholders) {
 
         if(!itemStack.hasItemMeta()) {
             return itemStack;
@@ -51,8 +52,7 @@ public class Util {
     }
 
 
-    public static String updatePlaceholders(String string, Player player, HashMap<String, String> placeholders) {
-        boolean usePlaceholdersAPI = (Bukkit.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null);
+    public static String updatePlaceholders(String string, Player player, Map<String, String> placeholders) {
 
         if(placeholders != null) {
             for (String placeholder : placeholders.keySet()) {
@@ -60,7 +60,7 @@ public class Util {
             }
         }
 
-        if(usePlaceholdersAPI) {
+        if(MessageHandler.usePlaceholders) {
             string = PlaceholderAPI.setPlaceholders(player, string);
         }
 
