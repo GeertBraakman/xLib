@@ -11,8 +11,25 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Util {
+
+    public static final boolean USE_PAPI = getPlaceholderAPI();
+
+    private Util(){}
+
+    private static boolean getPlaceholderAPI() {
+        boolean temp = Bukkit.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null;
+
+        if (temp) {
+            Logger.getLogger("xLib").log(Level.INFO, "Hooked into PlaceholderAPI!");
+        }
+
+        return temp;
+    }
+
 
     public static boolean isInteger(String string){
         try {
@@ -60,7 +77,7 @@ public class Util {
             }
         }
 
-        if(MessageHandler.usePlaceholders) {
+        if(USE_PAPI) {
             string = PlaceholderAPI.setPlaceholders(player, string);
         }
 
