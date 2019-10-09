@@ -1,25 +1,16 @@
 package io.github.geertbraakman.api.storage;
 
 import io.github.geertbraakman.Handler;
-import org.bukkit.plugin.Plugin;
+import io.github.geertbraakman.api.APIPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StorageHandler extends Handler {
 
-    private static StorageHandler instance;
-
-    public static StorageHandler getInstance(Plugin plugin) {
-        if(instance == null){
-            instance = new StorageHandler(plugin);
-        }
-        return instance;
-    }
-
     private List<Source> sources;
 
-    private StorageHandler(Plugin plugin) {
+    public StorageHandler(APIPlugin plugin) {
         super(plugin);
         sources = new ArrayList<>();
     }

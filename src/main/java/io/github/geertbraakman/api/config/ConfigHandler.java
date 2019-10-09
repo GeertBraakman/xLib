@@ -1,10 +1,10 @@
 package io.github.geertbraakman.api.config;
 
 import io.github.geertbraakman.Handler;
+import io.github.geertbraakman.api.APIPlugin;
 import io.github.geertbraakman.exceptions.ConfigLoadException;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,19 +13,11 @@ import java.util.List;
 
 public class ConfigHandler extends Handler {
 
-    private static ConfigHandler instance;
     private static final String EXTENSION = ".yml";
-
-    public static ConfigHandler getInstance(Plugin plugin) {
-        if(instance == null){
-            instance = new ConfigHandler(plugin);
-        }
-        return instance;
-    }
 
     private List<APIConfig> APIConfigList;
 
-    private ConfigHandler(Plugin plugin) {
+    public ConfigHandler(APIPlugin plugin) {
         super(plugin);
         APIConfigList = new ArrayList<>();
     }
@@ -48,13 +40,13 @@ public class ConfigHandler extends Handler {
     }
 
     YamlConfiguration loadConfig(String fileName) throws ConfigLoadException {
-        File file = new File(getPlugin().getDataFolder(), fileName);
+        File file = new File(getAPIPlugin().getDataFolder(), fileName);
         if (!file.exists()) {
 //            if (!file.getParentFile().mkdirs()){
 //                throw new ConfigLoadException(fileName, "Could not create the file");
 //            }
             file.getParentFile().mkdirs();
-            getPlugin().saveResource(fileName, false);
+            getAPIPlugin().saveResource(fileName, false);
         }
 
         YamlConfiguration config = new YamlConfiguration();

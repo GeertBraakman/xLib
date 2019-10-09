@@ -1,5 +1,7 @@
 package io.github.geertbraakman.api.command;
 
+import io.github.geertbraakman.api.APIPlugin;
+import io.github.geertbraakman.api.messaging.MessageHandler;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.*;
 
@@ -11,12 +13,14 @@ import java.util.List;
 public abstract class APICommand extends Command {
 
     private ArrayList<APICommand> subCommands;
-    private Plugin plugin;
+    private APIPlugin plugin;
     private boolean subCommandCheck = true;
+    private MessageHandler messageHandler;
 
-    public APICommand(Plugin plugin, String command) {
+    public APICommand(APIPlugin plugin, String command) {
         super(command);
         this.plugin = plugin;
+        this.messageHandler = plugin.getMessageHandler();
         subCommands = new ArrayList<>();
     }
 
@@ -110,7 +114,8 @@ public abstract class APICommand extends Command {
     public abstract boolean onCommand(CommandSender sender, Command command, String alias, String[] args);
 
     private boolean isSubCommand(String[] args) {
-        if (args.length == 0) {
+
+        if (args.length < 1) {
             return false;
         }
 
@@ -121,6 +126,7 @@ public abstract class APICommand extends Command {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -154,7 +160,7 @@ public abstract class APICommand extends Command {
      * @return if it's an alias.
      */
     private boolean containsLabel(String label) {
-        return (getName().equalsIgnoreCase(label) || getAliases().contains(label.toLowerCase()));
+        return (getName().equalsIgnoreCase(label) || getAliases().contains(label.toLowerCase()) || getLabel().equalsIgnoreCase(label));
     }
 
     /**
@@ -232,5 +238,9 @@ public abstract class APICommand extends Command {
 
     public Plugin getPlugin(){
         return this.plugin;
+    }
+
+    public MessageHandler getMessageHandler() {
+        return messageHandler;
     }
 }
