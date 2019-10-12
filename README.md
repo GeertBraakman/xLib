@@ -55,8 +55,6 @@ This is a library that I made for all my plugins, it will make your life a lot e
 ## Todo
 
 - Add JavaDoc
-- Add database Sources
-- Add unit-tests
 - Add input methods
 - Expand userinterfaces
 - Add wiki
