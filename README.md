@@ -5,7 +5,7 @@ This is a library that I made for all my plugins, it will make your life a lot e
 ## Features
 
 - Create commands on runtime.
-- Store data easy.
+- Easy message handler.
 - Use config files easy.
 - Easy UserInterfaces.
 
