@@ -21,6 +21,10 @@ public class MessageHandler extends Handler {
     private Map<String, String> messages;
     private String defaultMessage;
 
+    /**
+     * The constructor of this class, it will load the message file and call the reload method. It will also set a default message.
+     * @param plugin The plugin that is using this MessageHandler.
+     */
     public MessageHandler(APIPlugin plugin) {
         super(plugin);
 
@@ -31,6 +35,10 @@ public class MessageHandler extends Handler {
         reload();
     }
 
+    /**
+     * This methode will reload the message Handler, it will load all the messages from messages.yml.
+     * @return if the reload was a success.
+     */
     @Override
     public boolean reload() {
         messages = new HashMap<>();
@@ -59,10 +67,23 @@ public class MessageHandler extends Handler {
         return true;
     }
 
+    /**
+     * Get a message and set the placeholders from placeholderAPI.
+     * @param key The message you want to get.
+     * @param player The player that this message is send to.
+     * @return The message.
+     */
     public String getMessage(String key, Player player) {
         return getMessage(key, player, null);
     }
 
+    /**
+     * Get a message and set the placeholders from the placeholderAPI and the provided placeholders.
+     * @param key The message you want to get.
+     * @param player The player that this message is send to.
+     * @param map A map with extra placeholders that are not provided by the placeholderAPI.
+     * @return The message.
+     */
     public String getMessage(String key, Player player, Map<String, String> map) {
         String message = DEFAULT_KEY;
 
@@ -88,9 +109,14 @@ public class MessageHandler extends Handler {
         map.put("%prefix%", messages.get(PREFIX_KEY));
         map.put("%key%", key);
 
-        return Util.updatePlaceholders(message, player, map);
+        return Util.setPlaceholders(message, player, map);
     }
 
+    /**
+     * Set a default message for a specific key.
+     * @param key The key from the message you want to set.
+     * @param message The message you want to set.
+     */
     public void setDefaultMessage(String key, String message) {
         if (!messages.containsKey(key) || messages.get(key).equals(DEFAULT_KEY)) {
             messages.put(key, message);

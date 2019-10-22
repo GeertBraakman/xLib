@@ -17,8 +17,16 @@ public class Util {
 
     public static final boolean USE_PAPI = getPlaceholderAPI();
 
-    private Util(){}
+    /**
+     * The constructor is private and empty so this class can only be used as a static class.
+     */
+    private Util() {
+    }
 
+    /**
+     * Get if the placeholderAPI is installed, if so, send a message that the plugin hooked into placeholderAPI
+     * @return if placeholderAPI is installed
+     */
     private static boolean getPlaceholderAPI() {
         boolean temp = Bukkit.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null;
 
@@ -29,8 +37,13 @@ public class Util {
         return temp;
     }
 
-
-    public static boolean isInteger(String string){
+    /**
+     * Check if a string is an integer.
+     *
+     * @param string The string to be checked.
+     * @return If the string is an integer.
+     */
+    public static boolean isInteger(String string) {
         try {
             Integer.parseInt(string);
         } catch (NumberFormatException e) {
@@ -40,25 +53,34 @@ public class Util {
     }
 
     public static ItemStack updatePlaceHolders(ItemStack itemStack, Player player) {
-        return updatePlaceholders(itemStack, player, null);
+        return setPlaceholders(itemStack, player, null);
     }
 
-    public static ItemStack updatePlaceholders(ItemStack itemStack, Player player, Map<String, String> placeholders) {
+    /**
+     * Set placeholders in an ItemStack. This will include placeholders from the placeholder API. It will set
+     * placeholders in the lore and the display-name.
+     *
+     * @param itemStack    The ItemStack you want to update the placeholders in.
+     * @param player       The player that should be used to parse the placeholders.
+     * @param placeholders A map with extra placeholders that are not in the placeholderAPI.
+     * @return The ItemStack with the placeholders updated.
+     */
+    public static ItemStack setPlaceholders(ItemStack itemStack, Player player, Map<String, String> placeholders) {
 
-        if(!itemStack.hasItemMeta()) {
+        if (!itemStack.hasItemMeta()) {
             return itemStack;
         }
 
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-        if (itemMeta.hasDisplayName()){
-            itemMeta.setDisplayName(updatePlaceholders(itemMeta.getDisplayName(), player, placeholders));
+        if (itemMeta.hasDisplayName()) {
+            itemMeta.setDisplayName(setPlaceholders(itemMeta.getDisplayName(), player, placeholders));
         }
 
-        if (itemMeta.hasLore()){
+        if (itemMeta.hasLore()) {
             List<String> lore = itemMeta.getLore();
             for (int i = 0; i < lore.size(); i++) {
-                lore.set(i, updatePlaceholders(lore.get(i), player, placeholders));
+                lore.set(i, setPlaceholders(lore.get(i), player, placeholders));
             }
             itemMeta.setLore(lore);
         }
@@ -67,16 +89,23 @@ public class Util {
         return itemStack;
     }
 
+    /**
+     * Set placeholders in a String. This will include placeholders from the placeholder API
+     *
+     * @param string       The string you want to set the placeholders in.
+     * @param player       The player that should be used to parse the placeholders.
+     * @param placeholders A map with extra placeholders that are not in the placeholderAPI.
+     * @return The string with the placeholders set.
+     */
+    public static String setPlaceholders(String string, Player player, Map<String, String> placeholders) {
 
-    public static String updatePlaceholders(String string, Player player, Map<String, String> placeholders) {
-
-        if(placeholders != null) {
+        if (placeholders != null) {
             for (Map.Entry<String, String> entry : placeholders.entrySet()) {
                 string = string.replace(entry.getKey(), entry.getValue());
             }
         }
 
-        if(USE_PAPI) {
+        if (USE_PAPI) {
             string = PlaceholderAPI.setPlaceholders(player, string);
         }
 
