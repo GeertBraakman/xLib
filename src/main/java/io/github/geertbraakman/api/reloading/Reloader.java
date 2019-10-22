@@ -24,7 +24,7 @@ public class Reloader extends Handler {
     public boolean reloadPlugin() {
         boolean success = true;
 
-        success = getAPIPlugin().getConfigHandler().reload() && getAPIPlugin().getStorageHandler().reload();
+        success = getAPIPlugin().getConfigHandler().reload();
 
         for(IReloadable reloadable: reloadableList){
             if(!reloadable.reload()){
