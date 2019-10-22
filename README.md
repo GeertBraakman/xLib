@@ -1,11 +1,11 @@
-# xLib `v0.2`
+# xLib `v0.3.1`
 
 This is a library that I made for all my plugins, it will make your life a lot easier when writing Spigot plugins.
 
 ## Features
 
 - Create commands on runtime.
-- Store data easy.
+- Easy message handler.
 - Use config files easy.
 - Easy UserInterfaces.
 
@@ -55,8 +55,6 @@ This is a library that I made for all my plugins, it will make your life a lot e
 ## Todo
 
 - Add JavaDoc
-- Add database Sources
-- Add unit-tests
 - Add input methods
 - Expand userinterfaces
 - Add wiki
