@@ -52,6 +52,13 @@ public class Util {
         return true;
     }
 
+    /**
+     * Set the Placeholders from the placeholder API. It will update them in the lore and the display-name.
+     *
+     * @param itemStack The ItemStack you want to update the placeholders in.
+     * @param player    The player that wile be used to parse the placeholders.
+     * @return The ItemStack with the placeholders updated.
+     */
     public static ItemStack updatePlaceHolders(ItemStack itemStack, Player player) {
         return setPlaceholders(itemStack, player, null);
     }
