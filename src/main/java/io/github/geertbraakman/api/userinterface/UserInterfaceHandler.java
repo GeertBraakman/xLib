@@ -2,6 +2,7 @@ package io.github.geertbraakman.api.userinterface;
 
 import io.github.geertbraakman.Handler;
 import io.github.geertbraakman.api.APIPlugin;
+import io.github.geertbraakman.api.util.ItemHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,11 +17,13 @@ public class UserInterfaceHandler extends Handler implements Listener
 {
 
   private List<UserInterface> userInterfaces;
+  private ItemHandler itemHandler;
 
   public UserInterfaceHandler(APIPlugin plugin)
   {
     super(plugin);
     userInterfaces = new ArrayList<>();
+    this.itemHandler = plugin.getItemHandler();
   }
   
   public void registerUI(UserInterface userInterface) {
@@ -77,5 +80,9 @@ public class UserInterfaceHandler extends Handler implements Listener
         player.closeInventory();
       }
     }
+  }
+
+  public ItemHandler getItemHandler() {
+    return itemHandler;
   }
 }

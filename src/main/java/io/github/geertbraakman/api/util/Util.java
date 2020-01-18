@@ -105,6 +105,9 @@ public class Util {
      * @return The string with the placeholders set.
      */
     public static String setPlaceholders(String string, Player player, Map<String, String> placeholders) {
+        if (string == null) {
+            string = "";
+        }
 
         if (placeholders != null) {
             for (Map.Entry<String, String> entry : placeholders.entrySet()) {
@@ -118,5 +121,4 @@ public class Util {
 
         return ChatColor.translateAlternateColorCodes('&', string);
     }
-
 }

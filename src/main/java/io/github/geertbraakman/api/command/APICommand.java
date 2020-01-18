@@ -236,7 +236,7 @@ public abstract class APICommand extends Command {
         subCommandCheck = value;
     }
 
-    public Plugin getPlugin(){
+    public APIPlugin getPlugin(){
         return this.plugin;
     }
 

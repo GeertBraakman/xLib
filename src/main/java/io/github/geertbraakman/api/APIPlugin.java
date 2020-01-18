@@ -5,15 +5,17 @@ import io.github.geertbraakman.api.config.ConfigHandler;
 import io.github.geertbraakman.api.messaging.MessageHandler;
 import io.github.geertbraakman.api.reloading.Reloader;
 import io.github.geertbraakman.api.userinterface.UserInterfaceHandler;
+import io.github.geertbraakman.api.util.ItemHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class APIPlugin extends JavaPlugin {
+public abstract class APIPlugin extends JavaPlugin {
 
     private MessageHandler messageHandler;
     private CommandHandler commandHandler;
     private ConfigHandler configHandler;
     private Reloader reloader;
     private UserInterfaceHandler userInterfaceHandler;
+    private ItemHandler itemHandler;
 
     public MessageHandler getMessageHandler() {
         if(messageHandler == null) {
@@ -22,6 +24,15 @@ public class APIPlugin extends JavaPlugin {
 
         return messageHandler;
     }
+
+    public ItemHandler getItemHandler() {
+        if(itemHandler == null) {
+            itemHandler = new ItemHandler(this);
+        }
+
+        return itemHandler;
+    }
+
 
     public CommandHandler getCommandHandler() {
         if(commandHandler == null) {

@@ -34,6 +34,8 @@ public class CommandHandler extends Handler {
             getLogger().log(Level.WARNING, "There went something wrong with getting the CommandMap.");
             getLogger().log(Level.WARNING, "Message: " + e.getMessage());
         }
+
+
         return localSimpleCommandMap;
     }
 

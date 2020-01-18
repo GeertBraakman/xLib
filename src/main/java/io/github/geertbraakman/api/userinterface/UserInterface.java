@@ -1,5 +1,10 @@
 package io.github.geertbraakman.api.userinterface;
 
+import io.github.geertbraakman.api.APIPlugin;
+import io.github.geertbraakman.api.messaging.MessageHandler;
+import io.github.geertbraakman.api.util.GUISize;
+import io.github.geertbraakman.api.util.ItemHandler;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.HumanEntity;
@@ -16,15 +21,22 @@ import java.util.Map;
 
 public abstract class UserInterface
 {
+  private ItemHandler itemHandler;
   private Inventory inventory;
   private String name;
   private HashMap<Integer, ItemStack> staticItems;
   private List<Player> playerList;
+  private MessageHandler messageHandler;
   
-  public UserInterface(String name, int size)
-  {
+  public UserInterface(String name, GUISize GUISize, APIPlugin plugin) {
+    Validate.notNull(name, "Name cannot be null");
+    Validate.notNull(GUISize, "size cannot be null");
+    Validate.notNull(plugin, "Plugin cannot be null");
+
+    this.itemHandler = plugin.getItemHandler();
+    this.messageHandler = plugin.getMessageHandler();
     this.name = ChatColor.stripColor(name);
-    inventory = Bukkit.createInventory(null, size, ChatColor.translateAlternateColorCodes('&', name));
+    inventory = Bukkit.createInventory(null, GUISize.getSize(), ChatColor.translateAlternateColorCodes('&', name));
     staticItems = new HashMap<>();
     playerList = new ArrayList<>();
   }
@@ -81,5 +93,13 @@ public abstract class UserInterface
 
   public Map<Integer, ItemStack> getStaticItems(){
     return staticItems;
+  }
+
+  public ItemHandler getItemHandler() {
+    return itemHandler;
+  }
+
+  protected MessageHandler getMessageHandler() {
+    return messageHandler;
   }
 }

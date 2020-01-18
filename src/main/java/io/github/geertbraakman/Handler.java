@@ -3,6 +3,7 @@ package io.github.geertbraakman;
 import io.github.geertbraakman.api.APIPlugin;
 import io.github.geertbraakman.api.reloading.IReloadable;
 import io.github.geertbraakman.api.reloading.Reloader;
+import org.apache.commons.lang.Validate;
 import org.bukkit.event.Listener;
 
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ public abstract class Handler implements Listener, IReloadable {
      * The constructor is made protected because you should not be able to create an empty handler.
      */
     protected Handler(APIPlugin plugin){
+        Validate.notNull(plugin, "Plugin cannot be null");
         this.plugin = plugin;
         logger = plugin.getLogger();
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

@@ -22,7 +22,7 @@ public class Reloader extends Handler {
     }
 
     public boolean reloadPlugin() {
-        boolean success = true;
+        boolean success;
 
         success = getAPIPlugin().getConfigHandler().reload();
 
