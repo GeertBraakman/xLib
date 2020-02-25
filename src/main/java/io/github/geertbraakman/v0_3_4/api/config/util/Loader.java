@@ -1,27 +1,76 @@
-package io.github.geertbraakman.api.config.util;
+package io.github.geertbraakman.v0_3_4.api.config.util;
 
-import io.github.geertbraakman.api.command.APICommand;
-import io.github.geertbraakman.api.util.Util;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import io.github.geertbraakman.v0_3_4.api.command.APICommand;
+import io.github.geertbraakman.v0_3_4.api.messaging.DefaultMessage;
+import io.github.geertbraakman.v0_3_4.api.util.Util;
+import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Loader {
 
     private Loader() {}
 
     public static APICommand loadCommand(APICommand command, ConfigurationSection section) {
+        if (command == null) {
+            return null;
+        }
+        if (section == null) {
+            return command;
+        }
 
+        String name = section.getString("name");
+        if (name != null) {
+            command.setName(name);
+        }
+
+        String label = section.getString("label");
+        if (label  != null) {
+            command.setLabel(label);
+        }
+
+        List<String> aliases = section.getStringList("aliases");
+        if(!aliases.isEmpty()) {
+            command.setAliases(aliases);
+        }
+
+        String description = section.getString("description");
+        if (description != null) {
+            command.setDescription(description);
+        }
+
+        String usageMessage = section.getString("usage-message");
+        if (usageMessage != null) {
+           command.setUsage(usageMessage);
+        }
+
+        String permission = section.getString("permission");
+        if (permission != null) {
+            command.setPermission(permission);
+        }
+
+        List<String> permissions = section.getStringList("permissions");
+        if (!permissions.isEmpty()) {
+           StringBuilder builder = new StringBuilder();
+           for (String perm: permissions) {
+               builder.append(perm).append(';');
+           }
+           command.setPermission(builder.toString());
+        }
 
         return command;
     }
 
+    public static ItemStack loadItemStack(ConfigurationSection section) {
+        return loadItemStack(section, null);
+    }
 
     public static ItemStack loadItemStack(ConfigurationSection section, ItemStack defaultItemStack) {
 
@@ -43,13 +92,7 @@ public class Loader {
         }
 
         // Get the material String and parse it to a material. If it is not a valid material or the material is null then the default material will be used.
-        String materialString = section.getString("material");
-
-        if (materialString == null) {
-            materialString = defaultItemStack.getType().name();
-        }
-
-        Material material = Material.getMaterial(materialString.toUpperCase());
+        Material material = loadMaterial(section);
 
         if (material == null) {
             material = defaultItemStack.getType();
@@ -60,7 +103,7 @@ public class Loader {
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         if (itemMeta == null) {
-            return null;
+            return itemStack;
         }
 
 
@@ -78,20 +121,7 @@ public class Loader {
         itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
 
         // Get and set the amount
-        String amountString = section.getString("amount");
-        if (amountString == null) {
-            amountString = "1";
-        }
-
-        int amount = 1;
-
-        if (Util.isInteger(amountString)) {
-            amount = Integer.parseInt(amountString);
-        }
-
-        if (amount < 1) {
-            amount = 1;
-        }
+        int amount = Util.parsePositiveInt(section.getString("amount"), defaultItemStack.getAmount());
 
         itemStack.setAmount(amount);
 
@@ -119,8 +149,44 @@ public class Loader {
             }
         }
 
+        // Get and set unbreakable
+        boolean unbreakable = section.getBoolean("unbreakable", false);
+        itemMeta.setUnbreakable(unbreakable);
+
+        // Get and set durability
+        if (itemMeta instanceof Damageable) {
+            int durability = Util.parsePositiveInt(section.getString("damage"), ((Damageable) itemMeta).getDamage());
+            ((Damageable) itemMeta).setDamage(durability);
+        }
+
+        // Skull creator
+        if (itemMeta instanceof SkullMeta) {
+            OfflinePlayer offlinePlayer = section.getOfflinePlayer("skull-owner");
+            if (offlinePlayer == null) {
+                String value = section.getString("skull-owner");
+                if (value != null) {
+                    offlinePlayer = Bukkit.getOfflinePlayer(UUID.fromString(value));
+                }
+            }
+            ((SkullMeta) itemMeta).setOwningPlayer(offlinePlayer);
+        }
+
         itemStack.setItemMeta(itemMeta);
         return itemStack;
+    }
+
+    public static Material loadMaterial(ConfigurationSection configurationSection) {
+        if (configurationSection == null) {
+            return null;
+        }
+
+        String materialString = configurationSection.getString("material");
+
+        if (materialString == null) {
+            return null;
+        }
+
+        return Material.getMaterial(materialString.toUpperCase());
     }
 
 }

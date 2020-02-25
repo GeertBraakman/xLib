@@ -1,4 +1,4 @@
-package io.github.geertbraakman.api.messaging;
+package io.github.geertbraakman.v0_3_4.api.messaging;
 
 public enum DefaultMessage {
   PREFIX("prefix", ""),
@@ -6,8 +6,8 @@ public enum DefaultMessage {
   DEFAULT("default", "%prefix%&cThere is no default message available for &7%key%&c!"),
   NOT_ENOUGH_SPACE("not-enough-space", "%prefix%&cYou don't have enough space for &7%amount%&c items in your inventory, they will be dropped on the ground!"),
   NO_MESSAGE("none", ""),
-  RELOAD_FAILED("reload-success", "%prefix%&aThe reload was successfully!"),
-  RELOAD_SUCCESS("reload-failed", "%prefix%&cThe reload failed!")
+  RELOAD_SUCCESS("reload-success", "%prefix%&aThe reload was successfully!"),
+  RELOAD_FAILED("reload-failed", "%prefix%&cThe reload failed!")
   ;
 
   public final String key;

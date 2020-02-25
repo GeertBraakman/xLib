@@ -1,4 +1,4 @@
-package io.github.geertbraakman.api.util;
+package io.github.geertbraakman.v0_3_4.api.util;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
@@ -120,5 +120,22 @@ public class Util {
         }
 
         return ChatColor.translateAlternateColorCodes('&', string);
+    }
+
+    public static int parsePositiveInt(String input, int defaultValue) {
+        int i = parseInt(input, defaultValue);
+
+        if (i < 0) {
+            i = 0;
+        }
+        return  i;
+    }
+
+    public static int parseInt(String input, int defaultValue) {
+        if (!isInteger(input)) {
+            return defaultValue;
+        }
+
+        return Integer.parseInt(input);
     }
 }

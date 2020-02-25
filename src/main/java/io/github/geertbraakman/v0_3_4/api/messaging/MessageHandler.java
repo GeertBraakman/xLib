@@ -1,9 +1,9 @@
-package io.github.geertbraakman.api.messaging;
+package io.github.geertbraakman.v0_3_4.api.messaging;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.api.APIPlugin;
-import io.github.geertbraakman.api.config.APIConfig;
-import io.github.geertbraakman.api.util.Util;
+import io.github.geertbraakman.v0_3_4.Handler;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.api.config.APIConfig;
+import io.github.geertbraakman.v0_3_4.api.util.Util;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
@@ -64,8 +64,6 @@ public class MessageHandler extends Handler {
     for (String key : section.getKeys(false)) {
       messages.put(key, section.getString(key));
     }
-
-
 
     getLogger().log(Level.INFO,  () -> "Loaded " + messages.size() + " messages.");
     return true;

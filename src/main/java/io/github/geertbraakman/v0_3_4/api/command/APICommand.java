@@ -1,7 +1,6 @@
-package io.github.geertbraakman.api.command;
+package io.github.geertbraakman.v0_3_4.api.command;
 
-import io.github.geertbraakman.api.APIPlugin;
-import io.github.geertbraakman.api.messaging.MessageHandler;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.*;
 
@@ -13,12 +12,10 @@ public abstract class APICommand extends Command {
     private ArrayList<APICommand> subCommands;
     private APIPlugin plugin;
     private boolean subCommandCheck = true;
-    private MessageHandler messageHandler;
 
     public APICommand(APIPlugin plugin, String command) {
         super(command);
         this.plugin = plugin;
-        this.messageHandler = plugin.getMessageHandler();
         subCommands = new ArrayList<>();
     }
 
@@ -224,21 +221,21 @@ public abstract class APICommand extends Command {
         this.subCommandCheck = subCommandCheck;
     }
 
+    /**
+     * Add a sub-command to this command.
+     * @param subCommand The sub-command that you want to add.
+     */
     public void addSubCommand(APICommand subCommand){
         if(!subCommands.contains(subCommand)) {
             subCommands.add(subCommand);
         }
     }
 
-    void setSubCommandCheck(Boolean value){
-        subCommandCheck = value;
-    }
-
+    /**
+     * Get the plugin that this command belongs to.
+     * @return The plugin this command belongs to.
+     */
     public APIPlugin getPlugin(){
         return this.plugin;
-    }
-
-    public MessageHandler getMessageHandler() {
-        return messageHandler;
     }
 }

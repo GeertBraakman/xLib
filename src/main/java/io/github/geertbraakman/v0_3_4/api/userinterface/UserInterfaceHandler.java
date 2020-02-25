@@ -1,8 +1,8 @@
-package io.github.geertbraakman.api.userinterface;
+package io.github.geertbraakman.v0_3_4.api.userinterface;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.api.APIPlugin;
-import io.github.geertbraakman.api.util.ItemHandler;
+import io.github.geertbraakman.v0_3_4.Handler;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.api.util.ItemHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

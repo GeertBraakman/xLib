@@ -1,11 +1,11 @@
-package io.github.geertbraakman.api;
+package io.github.geertbraakman.v0_3_4.api;
 
-import io.github.geertbraakman.api.command.CommandHandler;
-import io.github.geertbraakman.api.config.ConfigHandler;
-import io.github.geertbraakman.api.messaging.MessageHandler;
-import io.github.geertbraakman.api.reloading.Reloader;
-import io.github.geertbraakman.api.userinterface.UserInterfaceHandler;
-import io.github.geertbraakman.api.util.ItemHandler;
+import io.github.geertbraakman.v0_3_4.api.command.CommandHandler;
+import io.github.geertbraakman.v0_3_4.api.config.ConfigHandler;
+import io.github.geertbraakman.v0_3_4.api.messaging.MessageHandler;
+import io.github.geertbraakman.v0_3_4.api.reloading.Reloader;
+import io.github.geertbraakman.v0_3_4.api.userinterface.UserInterfaceHandler;
+import io.github.geertbraakman.v0_3_4.api.util.ItemHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class APIPlugin extends JavaPlugin {

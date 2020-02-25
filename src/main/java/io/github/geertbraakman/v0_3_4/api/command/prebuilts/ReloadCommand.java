@@ -1,16 +1,17 @@
-package io.github.geertbraakman.api.command.prebuilts;
+package io.github.geertbraakman.v0_3_4.api.command.prebuilts;
 
 
-import io.github.geertbraakman.api.APIPlugin;
-import io.github.geertbraakman.api.command.APICommand;
-import io.github.geertbraakman.api.messaging.DefaultMessage;
-import io.github.geertbraakman.api.reloading.Reloader;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.api.command.APICommand;
+import io.github.geertbraakman.v0_3_4.api.messaging.DefaultMessage;
+import io.github.geertbraakman.v0_3_4.api.reloading.Reloader;
+import io.github.geertbraakman.v0_3_4.Handler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * This class is a prebuild for a ReloadCommand. When added as SubCommand to your plugin it will add the functionality to reload all classes that implements {@link io.github.geertbraakman.Handler}.
+ * This class is a prebuild for a ReloadCommand. When added as SubCommand to your plugin it will add the functionality to reload all classes that implements {@link Handler}.
  *
  * Default permission: '[plugin.getName()].reload'
  * Default description: 'This command will reload the plugin.'
@@ -53,7 +54,7 @@ public class ReloadCommand extends APICommand {
             message = DefaultMessage.RELOAD_FAILED;
         }
 
-        sender.sendMessage(getMessageHandler().getMessage(message, player));
+        sender.sendMessage(getPlugin().getMessageHandler().getMessage(message, player));
 
         return true;
     }

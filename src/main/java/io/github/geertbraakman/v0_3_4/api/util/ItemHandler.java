@@ -1,7 +1,7 @@
-package io.github.geertbraakman.api.util;
+package io.github.geertbraakman.v0_3_4.api.util;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.Handler;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

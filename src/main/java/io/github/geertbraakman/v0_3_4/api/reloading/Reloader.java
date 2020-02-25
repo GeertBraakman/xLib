@@ -1,7 +1,7 @@
-package io.github.geertbraakman.api.reloading;
+package io.github.geertbraakman.v0_3_4.api.reloading;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.Handler;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,11 +27,16 @@ public class Reloader extends Handler {
         success = getAPIPlugin().getConfigHandler().reload();
 
         for(IReloadable reloadable: reloadableList){
-            if(!reloadable.reload()){
+            if (!reloadable.reload()){
                 success = false;
                 getLogger().log(Level.WARNING, "Error while reloading '" + reloadable.getClass().getName() + "'. Check above for more info!");
             }
         }
+
+        if (!success) {
+            getLogger().log(Level.WARNING, "Error while reloading!");
+        }
+
         return success;
     }
 

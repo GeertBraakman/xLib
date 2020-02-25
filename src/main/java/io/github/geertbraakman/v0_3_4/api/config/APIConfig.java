@@ -1,7 +1,7 @@
-package io.github.geertbraakman.api.config;
+package io.github.geertbraakman.v0_3_4.api.config;
 
-import io.github.geertbraakman.api.APIPlugin;
-import io.github.geertbraakman.exceptions.ConfigLoadException;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.exceptions.ConfigLoadException;
 import org.bukkit.configuration.file.FileConfiguration;
 
 /**
@@ -11,12 +11,12 @@ import org.bukkit.configuration.file.FileConfiguration;
  */
 public class APIConfig {
 
-  private String fileName;
+  private final String fileName;
   private FileConfiguration fileConfiguration;
-  private ConfigHandler handler;
+  private final ConfigHandler handler;
 
     /**
-     * The constructor will load the file, after creating it it's directly usable.
+     * The constructor will load the file, after creating it, it's directly usable.
      * @param plugin The plugin you want to create this fileConfiguration with.
      * @param name - The name of the file, it will automatically put .yml behind it when you forget.
      */
@@ -70,5 +70,9 @@ public class APIConfig {
      */
   public String getFileName() {
     return fileName;
+  }
+
+  public void save() {
+      handler.saveConfig(this);
   }
 }

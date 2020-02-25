@@ -1,9 +1,9 @@
-package io.github.geertbraakman.api.userinterface;
+package io.github.geertbraakman.v0_3_4.api.userinterface;
 
-import io.github.geertbraakman.api.APIPlugin;
-import io.github.geertbraakman.api.messaging.MessageHandler;
-import io.github.geertbraakman.api.util.GUISize;
-import io.github.geertbraakman.api.util.ItemHandler;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.api.messaging.MessageHandler;
+import io.github.geertbraakman.v0_3_4.api.util.GUISize;
+import io.github.geertbraakman.v0_3_4.api.util.ItemHandler;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

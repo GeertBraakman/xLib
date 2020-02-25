@@ -1,8 +1,7 @@
-package io.github.geertbraakman.api.command;
+package io.github.geertbraakman.v0_3_4.api.command;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.PropertyHandler;
-import io.github.geertbraakman.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.Handler;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
@@ -12,13 +11,13 @@ import java.util.logging.Level;
 
 public class CommandHandler extends Handler {
 
-    private SimpleCommandMap simpleCommandMap;
-    private Boolean subCommandCheck;
+    private final SimpleCommandMap simpleCommandMap;
+    private final Boolean subCommandCheck;
 
     public CommandHandler(APIPlugin plugin) {
         super(plugin);
         simpleCommandMap = getSimpleCommandMap();
-        subCommandCheck = PropertyHandler.getInstance(plugin).subCommandCheck();
+        subCommandCheck = true;
     }
 
     private SimpleCommandMap getSimpleCommandMap() {

@@ -1,8 +1,8 @@
-package io.github.geertbraakman.api.config;
+package io.github.geertbraakman.v0_3_4.api.config;
 
-import io.github.geertbraakman.Handler;
-import io.github.geertbraakman.api.APIPlugin;
-import io.github.geertbraakman.exceptions.ConfigLoadException;
+import io.github.geertbraakman.v0_3_4.Handler;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.exceptions.ConfigLoadException;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -15,7 +15,7 @@ public class ConfigHandler extends Handler {
 
     private static final String EXTENSION = ".yml";
 
-    private List<APIConfig> apiConfigList;
+    private final List<APIConfig> apiConfigList;
 
     public ConfigHandler(APIPlugin plugin) {
         super(plugin);
@@ -26,6 +26,7 @@ public class ConfigHandler extends Handler {
     public boolean reload() {
         for(APIConfig APIConfig : apiConfigList){
             if(!APIConfig.reload()){
+                getLogger().warning("Could not load file '" + APIConfig.getFileName() + "'");
                 return false;
             }
         }
@@ -39,8 +40,18 @@ public class ConfigHandler extends Handler {
         return name;
     }
 
-    YamlConfiguration loadConfig(String fileName) throws ConfigLoadException {
+    public  void saveConfig(APIConfig config) {
+        File file = new File(getAPIPlugin().getDataFolder(), config.getFileName());
+        try {
+            config.getFileConfiguration().save(file);
+        } catch (IOException e) {
+            getLogger().warning("Could not save '" + config.getFileName() + "'! reason: " + e.getMessage());
+        }
+    }
+
+    public YamlConfiguration loadConfig(String fileName) throws ConfigLoadException {
         File file = new File(getAPIPlugin().getDataFolder(), fileName);
+
         if (!file.exists()) {
             file.getParentFile().mkdirs();
             getAPIPlugin().saveResource(fileName, false);
@@ -62,6 +73,6 @@ public class ConfigHandler extends Handler {
     }
 
     void handleException(ConfigLoadException exception) {
-        getLogger().warning(exception.getMessage());
+        getLogger().warning("could not load file '" + exception.getMessage() + "'");
     }
 }
