@@ -5,8 +5,6 @@ import io.github.geertbraakman.api.messaging.MessageHandler;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.*;
 
-import org.bukkit.plugin.Plugin;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,16 +71,16 @@ public abstract class APICommand extends Command {
 
 
     /**
-     * Get all the subcommans registert for this command.
+     * Get all the sub-command registered for this command.
      *
-     * @return the subcommans.
+     * @return the sub-command.
      */
     public List<APICommand> getSubCommands() {
         return subCommands;
     }
 
     /**
-     * The method that triggers the onTabComplete method. Will be called by the CommandMap
+     * The method that triggers the onTabComplete method. Will be called by the CommandMap.
      *
      * @param sender the sender of the command
      * @param alias  the alias used for this command
@@ -102,14 +100,14 @@ public abstract class APICommand extends Command {
     }
 
     /**
-     * The Method that get excecuted when the command is called by the sender. Has to be overwritten by the plugin that made this command.
+     * The Method that get executed when the command gets called by the sender. Has to be overwritten by the plugin that made this command.
      *
      * @param sender  the sender of the command
-     * @param command the command that is excecuted, the first in the chain.
+     * @param command the command that is executed, the first in the chain.
      * @param alias   the alias used by the sender
      * @param args    the arguments
      *
-     * @return If the command failed or not
+     * @return If the command failed or not.
      */
     public abstract boolean onCommand(CommandSender sender, Command command, String alias, String[] args);
 
@@ -133,11 +131,11 @@ public abstract class APICommand extends Command {
     /**
      * Will look at the first argument and check if it's a sub-command of the main command.
      *
-     * @param sender the sender of the command
-     * @param alias  the alias that is used in the command
-     * @param args   the arguments given by the sender
+     * @param sender The sender of the command.
+     * @param alias  The alias which gets called.
+     * @param args   The arguments given by the sender.
      *
-     * @return if an sub-command has been found and called.
+     * @return If a sub-command has been found and called.
      */
     public boolean executeSubCommand(CommandSender sender, String alias, String[] args) {
         if (args.length == 0) {
@@ -168,7 +166,7 @@ public abstract class APICommand extends Command {
      * @param sender the sender of the request
      * @param command the command of this event.
      * @param alias the alias used by the sender.
-     * @param args the arguments
+     * @param args the arguments.
      * @return all the options that the player can choose of.
      */
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {

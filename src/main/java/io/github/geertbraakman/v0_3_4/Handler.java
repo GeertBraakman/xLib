@@ -1,8 +1,8 @@
-package io.github.geertbraakman;
+package io.github.geertbraakman.v0_3_4;
 
-import io.github.geertbraakman.api.APIPlugin;
-import io.github.geertbraakman.api.reloading.IReloadable;
-import io.github.geertbraakman.api.reloading.Reloader;
+import io.github.geertbraakman.v0_3_4.api.APIPlugin;
+import io.github.geertbraakman.v0_3_4.api.reloading.IReloadable;
+import io.github.geertbraakman.v0_3_4.api.reloading.Reloader;
 import org.apache.commons.lang.Validate;
 import org.bukkit.event.Listener;
 
